@@ -9,17 +9,17 @@ from django.db import models
 
 
 class Artists(models.Model):
-    ArtistId = models.AutoField(primary_key=True)  # Field name made lowercase.
-    Name = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    ArtistId = models.AutoField(primary_key=True)  
+    Name = models.TextField(blank=True, null=True)   
 
     class Meta:
         managed = False
         db_table = 'artists'
 
 class Albums(models.Model):
-    AlbumId = models.AutoField(primary_key=True)  # Field name made lowercase.
-    Title = models.TextField()  # Field name made lowercase. This field type is a guess.
-    ArtistId = models.ForeignKey(Artists, on_delete=models.CASCADE)  # Field name made lowercase.
+    AlbumId = models.AutoField(primary_key=True)  
+    Title = models.TextField()   
+    ArtistId = models.ForeignKey(Artists, on_delete=models.CASCADE, db_column='ArtistId')  
 
     class Meta:
         managed = False
@@ -27,21 +27,21 @@ class Albums(models.Model):
 
 
 class Employees(models.Model):
-    EmployeeId = models.AutoField(primary_key=True)  # Field name made lowercase.
-    LastName = models.TextField()  # Field name made lowercase. This field type is a guess.
-    FirstName = models.TextField()  # Field name made lowercase. This field type is a guess.
-    Title = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    ReportsTo = models.ForeignKey('Employees', on_delete=models.CASCADE)  # Field name made lowercase.
-    BirthDate = models.DateTimeField(blank=True, null=True)  # Field name made lowercase.
-    HireDate = models.DateTimeField(blank=True, null=True)  # Field name made lowercase.
-    Address = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    City = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    State = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    Country = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    PostalCode = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    Phone = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    Fax = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    Email = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    EmployeeId = models.AutoField(primary_key=True)  
+    LastName = models.TextField()   
+    FirstName = models.TextField()   
+    Title = models.TextField(blank=True, null=True)   
+    ReportsTo = models.ForeignKey('Employees', on_delete=models.CASCADE, db_column='ReportsTo')  
+    BirthDate = models.DateTimeField(blank=True, null=True)  
+    HireDate = models.DateTimeField(blank=True, null=True)  
+    Address = models.TextField(blank=True, null=True)   
+    City = models.TextField(blank=True, null=True)   
+    State = models.TextField(blank=True, null=True)   
+    Country = models.TextField(blank=True, null=True)   
+    PostalCode = models.TextField(blank=True, null=True)   
+    Phone = models.TextField(blank=True, null=True)   
+    Fax = models.TextField(blank=True, null=True)   
+    Email = models.TextField(blank=True, null=True)   
 
     class Meta:
         managed = False
@@ -49,19 +49,19 @@ class Employees(models.Model):
 
 
 class Customers(models.Model):
-    CustomerId = models.AutoField(primary_key=True)  # Field name made lowercase.
-    FirstName = models.TextField()  # Field name made lowercase. This field type is a guess.
-    LastName = models.TextField()  # Field name made lowercase. This field type is a guess.
-    Company = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    Address = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    City = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    State = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    Country = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    postalcode = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    Phone = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    Fax = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    Email = models.TextField()  # Field name made lowercase. This field type is a guess.
-    SupportRepId = models.ForeignKey(Employees, on_delete=models.CASCADE)  # Field name made lowercase.
+    CustomerId = models.AutoField(primary_key=True)  
+    FirstName = models.TextField()   
+    LastName = models.TextField()   
+    Company = models.TextField(blank=True, null=True)   
+    Address = models.TextField(blank=True, null=True)   
+    City = models.TextField(blank=True, null=True)   
+    State = models.TextField(blank=True, null=True)   
+    Country = models.TextField(blank=True, null=True)   
+    postalcode = models.TextField(blank=True, null=True)   
+    Phone = models.TextField(blank=True, null=True)   
+    Fax = models.TextField(blank=True, null=True)   
+    Email = models.TextField()   
+    SupportRepId = models.ForeignKey(Employees, on_delete=models.CASCADE, db_column='SupportRepId')  
 
     class Meta:
         managed = False
@@ -69,8 +69,8 @@ class Customers(models.Model):
 
 
 class Genres(models.Model):
-    GenreId = models.AutoField(primary_key=True)  # Field name made lowercase.
-    Name = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    GenreId = models.AutoField(primary_key=True)  
+    Name = models.TextField(blank=True, null=True)   
 
     class Meta:
         managed = False
@@ -78,15 +78,15 @@ class Genres(models.Model):
 
 
 class Invoices(models.Model):
-    InvoiceId = models.AutoField(primary_key=True)  # Field name made lowercase.
-    CustomerId = models.ForeignKey(Customers, on_delete=models.CASCADE)  # Field name made lowercase.
-    InvoiceDate = models.DateTimeField()  # Field name made lowercase.
-    BillingAddress = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    BillingCity = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    BillingState = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    BillingCountry = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    BillingPostalCode = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    Total = models.TextField()  # Field name made lowercase. This field type is a guess.
+    InvoiceId = models.AutoField(primary_key=True)  
+    CustomerId = models.ForeignKey(Customers, on_delete=models.CASCADE, db_column='CustomerId')  
+    InvoiceDate = models.DateTimeField()  
+    BillingAddress = models.TextField(blank=True, null=True)   
+    BillingCity = models.TextField(blank=True, null=True)   
+    BillingState = models.TextField(blank=True, null=True)   
+    BillingCountry = models.TextField(blank=True, null=True)   
+    BillingPostalCode = models.TextField(blank=True, null=True)   
+    Total = models.TextField()   
 
     class Meta:
         managed = False
@@ -94,8 +94,8 @@ class Invoices(models.Model):
 
 
 class MediaTypes(models.Model):
-    MediaTypeId = models.AutoField(primary_key=True)  # Field name made lowercase.
-    Name = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    MediaTypeId = models.AutoField(primary_key=True)  
+    Name = models.TextField(blank=True, null=True)   
 
     class Meta:
         managed = False
@@ -103,8 +103,8 @@ class MediaTypes(models.Model):
 
 
 class Playlists(models.Model):
-    PlaylistId = models.AutoField(primary_key=True)  # Field name made lowercase.
-    Name = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    PlaylistId = models.AutoField(primary_key=True)  
+    Name = models.TextField(blank=True, null=True)   
 
     class Meta:
         managed = False
@@ -112,9 +112,9 @@ class Playlists(models.Model):
 
 
 class SqliteStat1(models.Model):
-    tbl = models.TextField(blank=True, null=True)  # This field type is a guess.
-    idx = models.TextField(blank=True, null=True)  # This field type is a guess.
-    stat = models.TextField(blank=True, null=True)  # This field type is a guess.
+    tbl = models.TextField(blank=True, null=True)
+    idx = models.TextField(blank=True, null=True)
+    stat = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -122,15 +122,15 @@ class SqliteStat1(models.Model):
 
 
 class Tracks(models.Model):
-    TrackId = models.AutoField(primary_key=True)  # Field name made lowercase.
-    Name = models.TextField()  # Field name made lowercase. This field type is a guess.
-    AlbumId = models.ForeignKey(Albums, on_delete=models.CASCADE)  # Field name made lowercase.
-    MediaTypeId = models.ForeignKey(MediaTypes, on_delete=models.CASCADE)  # Field name made lowercase.
-    GenreId = models.ForeignKey(Genres, on_delete=models.CASCADE)  # Field name made lowercase.
-    Composer = models.TextField(blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    Milliseconds = models.IntegerField()  # Field name made lowercase.
-    Bytes = models.IntegerField(blank=True, null=True)  # Field name made lowercase.
-    UnitPrice = models.TextField()  # Field name made lowercase. This field type is a guess.
+    TrackId = models.AutoField(primary_key=True)  
+    Name = models.TextField()   
+    AlbumId = models.ForeignKey(Albums, on_delete=models.CASCADE,db_column='AlbumId')  
+    MediaTypeId = models.ForeignKey(MediaTypes, on_delete=models.CASCADE,db_column='MediaTypeId')  
+    GenreId = models.ForeignKey(Genres, on_delete=models.CASCADE,db_column='GenreId')  
+    Composer = models.TextField(blank=True, null=True)   
+    Milliseconds = models.IntegerField()  
+    Bytes = models.IntegerField(blank=True, null=True)  
+    UnitPrice = models.TextField()   
 
     class Meta:
         managed = False
@@ -138,8 +138,8 @@ class Tracks(models.Model):
 
 
 class PlaylistTrack(models.Model):
-    PlaylistId = models.ForeignKey(Playlists, on_delete=models.CASCADE)  # Field name made lowercase.
-    TrackId = models.ForeignKey(Tracks, on_delete=models.CASCADE)  # Field name made lowercase.
+    PlaylistId = models.ForeignKey(Playlists, on_delete=models.CASCADE,db_column='PlaylistId')  
+    TrackId = models.ForeignKey(Tracks, on_delete=models.CASCADE,db_column='TrackId')  
 
     class Meta:
         managed = False
@@ -147,11 +147,11 @@ class PlaylistTrack(models.Model):
 
 
 class InvoiceItems(models.Model):
-    InvoiceLineId = models.AutoField(primary_key=True)  # Field name made lowercase.
-    InvoiceId = models.ForeignKey(Invoices, on_delete=models.CASCADE)  # Field name made lowercase.
-    TrackId = models.ForeignKey(Tracks, on_delete=models.CASCADE)  # Field name made lowercase.
-    UnitPrice = models.TextField()  # Field name made lowercase. This field type is a guess.
-    Quantity = models.IntegerField()  # Field name made lowercase.
+    InvoiceLineId = models.AutoField(primary_key=True)  
+    InvoiceId = models.ForeignKey(Invoices, on_delete=models.CASCADE,db_column='InvoiceId')  
+    TrackId = models.ForeignKey(Tracks, on_delete=models.CASCADE,db_column='TrackId')  
+    UnitPrice = models.TextField()   
+    Quantity = models.IntegerField()  
 
     class Meta:
         managed = False

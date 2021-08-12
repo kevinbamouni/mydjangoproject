@@ -6,4 +6,5 @@ urlpatterns = [
     # ex: /polls/
     path('', views.index, name='index'),
     path('dataview/', views.chinookdataview, name='chinookdataview'),
+    path('albumsview/', views.chinookalbumview, name='chinookalbumview'),
 ]
